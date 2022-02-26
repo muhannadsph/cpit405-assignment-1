@@ -35,29 +35,41 @@
 <body>
 
     <header>
-        <h1>Assignment 2</h1>
+        <h1>Assignment 3</h1>
     </header>
 
-    <h2>(Italian Trulli)</h2>
-    <img src="pic_trulli.jpg" alt="Trulli">
+    <script>
+   let images = [
+    { name: 'detroit', url: 'https://www.dexerto.com/wp-content/uploads/2022/01/13/how-long-is-detroit-become-human-play-time-100-complete-fastest-speedrun-1024x576.jpeg' },
+    { name: 'cyberpunk', url: 'https://sm.pcmag.com/pcmag_mear/photo/default/cyberpunk-2077-satisfactory-tech-level-cdpr_skzp.jpg' },
+    { name: 'life is strange', url: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1265920/header.jpg?t=1644953620'  },
+    { name: 'need for speed heat', url: 'https://www.hrkgame.com/media/games/.thumbnails/EA-anunta-Need-for-Speed-Heat.jpg/EA-anunta-Need-for-Speed-Heat-460x215.jpg' }
+];
 
-    <h2>(HGirl in a jacket)</h2>
-    <img src="img_girl.jpg" alt="Girl in a jacket">
-
-    <h2>(Flowers in Chania)</h2>
-    <img src="img_chania.jpg" alt="Flowers in Chania">
-
-    <h2>(life is strange)</h2>
-    <img src="life is strange.jpg" alt="japan">
-
-    <h2>(Kid)</h2>
-    <img src="kid.jpg" alt="kid">
+images.sort(compare);
+function compare(a, b) {
+    if (a.name < b.name) {
+        return -1;
+    }
+    else if (a.name > b.name) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+for (imageItem of images) {
+    let imgElem = document.createElement("img");
+    imgElem.src = imageItem.url;
+    document.body.append(imgElem);
+}
+    </script>
 
     <br>
-<center>
-    <a href="Search.html">search</a>
-    <a href="Upload.html">submit/upload</a></center>
-
+    <center>
+        <a href="Search.html">search</a>
+        <a href="Upload.html">submit/upload</a>
+    </center>
 
 </body>
 <!DOCTYPE html>
