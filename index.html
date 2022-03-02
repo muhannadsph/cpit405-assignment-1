@@ -38,31 +38,57 @@
         <h1>Assignment 3</h1>
     </header>
 
-    <script>
-   let images = [
-    { name: 'detroit', url: 'https://www.dexerto.com/wp-content/uploads/2022/01/13/how-long-is-detroit-become-human-play-time-100-complete-fastest-speedrun-1024x576.jpeg' },
-    { name: 'cyberpunk', url: 'https://sm.pcmag.com/pcmag_mear/photo/default/cyberpunk-2077-satisfactory-tech-level-cdpr_skzp.jpg' },
-    { name: 'life is strange', url: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1265920/header.jpg?t=1644953620'  },
-    { name: 'need for speed heat', url: 'https://www.hrkgame.com/media/games/.thumbnails/EA-anunta-Need-for-Speed-Heat.jpg/EA-anunta-Need-for-Speed-Heat-460x215.jpg' }
-];
+    <select id="background-selector">
+        <option value="">Change background color</option>
+        <option value="lightgreen">Light Green</option>
+        <option value="gray">Gray</option>
+        <option value="white">White</option>
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+    </select>
 
-images.sort(compare);
-function compare(a, b) {
-    if (a.name < b.name) {
-        return -1;
-    }
-    else if (a.name > b.name) {
-        return 1;
-    }
-    else {
-        return 0;
-    }
-}
-for (imageItem of images) {
-    let imgElem = document.createElement("img");
-    imgElem.src = imageItem.url;
-    document.body.append(imgElem);
-}
+    <script>    
+   var bgSelector = document.getElementById("background-selector")
+   bgSelector.onchange = function() {
+     if (bgSelector.value != "") {
+       var expirationTime = new Date()
+       expirationTime.setMinutes(expirationTime.getMinutes() + 1)
+       document.body.style = 'background-color: ' + bgSelector.value
+       document.cookie = 'bgcolor=' + bgSelector.value + ';expires=' + expirationTime.toUTCString()
+
+     }
+   }
+   window.onload = function() {
+     if (document.cookie != undefined && document.cookie.indexOf('bgcolor') != -1) {
+       document.body.style = 'background-color: ' + document.cookie.split('=')[1]
+       console.log(document.cookie)
+     }
+   }
+
+        let images = [
+            { name: 'detroit', url: 'https://www.dexerto.com/wp-content/uploads/2022/01/13/how-long-is-detroit-become-human-play-time-100-complete-fastest-speedrun-1024x576.jpeg' },
+            { name: 'cyberpunk', url: 'https://sm.pcmag.com/pcmag_mear/photo/default/cyberpunk-2077-satisfactory-tech-level-cdpr_skzp.jpg' },
+            { name: 'life is strange', url: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1265920/header.jpg?t=1644953620' },
+            { name: 'need for speed heat', url: 'https://www.hrkgame.com/media/games/.thumbnails/EA-anunta-Need-for-Speed-Heat.jpg/EA-anunta-Need-for-Speed-Heat-460x215.jpg' }
+        ];
+
+        images.sort(compare);
+        function compare(a, b) {
+            if (a.name < b.name) {
+                return -1;
+            }
+            else if (a.name > b.name) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
+        for (imageItem of images) {
+            let imgElem = document.createElement("img");
+            imgElem.src = imageItem.url;
+            document.body.append(imgElem);
+        }
     </script>
 
     <br>
